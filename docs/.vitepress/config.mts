@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 export default defineConfig({
   title: 'My Home Assistant',
-  description: 'Home Assistantの設定、機器連携、運用のナレッジ',
+  description: 'Home Assistantの設定や機器連携、運用のガイド',
   lang: 'ja',
   base: process.env.SITE_BASE_PATH ?? '/',
   outDir: '../dist',
