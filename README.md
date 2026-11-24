@@ -6,8 +6,8 @@ A knowledge base for configuring, integrating, and operating Home Assistant.
 
 [Published site](https://nuitsjp.github.io/my-home-assistant/)
 
-- [Bluetooth temperature and humidity sensor — BTHome conversion guide](docs/guides/mjwsd06mmc-bthome/index.md) (Japanese)
-- [Bluetooth temperature and humidity sensor — quick guide](docs/guides/mjwsd06mmc-bthome/overview.en.md) (English)
+- [Convert a Xiaomi Bluetooth temperature and humidity sensor to BTHome](docs/guides/mjwsd06mmc-bthome/index.md) (Japanese)
+- [Convert a Xiaomi Bluetooth temperature and humidity sensor to BTHome — quick guide](docs/guides/mjwsd06mmc-bthome/overview.en.md) (English)
 
 ## Work on the site
 

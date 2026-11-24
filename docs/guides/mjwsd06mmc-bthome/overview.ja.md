@@ -1,4 +1,4 @@
-# Bluetooth温湿度計のBTHome化
+# XiaomiのBluetooth温湿度計をBTHome化する
 
 [English](./overview.en.md) · **日本語**
 

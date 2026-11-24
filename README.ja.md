@@ -6,8 +6,8 @@ Home Assistantの設定、機器連携、運用のナレッジをまとめるリ
 
 [公開サイト](https://nuitsjp.github.io/my-home-assistant/)
 
-- [Bluetooth温湿度計をBTHome化する手順](docs/guides/mjwsd06mmc-bthome/index.md)
-- [Bluetooth温湿度計のBTHome化の英語版概要](docs/guides/mjwsd06mmc-bthome/overview.en.md)
+- [XiaomiのBluetooth温湿度計をBTHome化する](docs/guides/mjwsd06mmc-bthome/index.md)
+- [XiaomiのBluetooth温湿度計をBTHome化する英語版概要](docs/guides/mjwsd06mmc-bthome/overview.en.md)
 
 ## サイトを編集する
 

@@ -1,4 +1,4 @@
-# Convert a Bluetooth temperature and humidity sensor to BTHome
+# Convert a Xiaomi Bluetooth temperature and humidity sensor to BTHome
 
 **English** · [日本語](./overview.ja.md)
 
