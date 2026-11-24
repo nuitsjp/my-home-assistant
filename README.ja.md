@@ -1,41 +1,21 @@
-# Xiaomi MJWSD06MMCのBTHome化
+# My Home Assistant
 
 [English](README.md) · **日本語**
 
-Xiaomi スマート温湿度計 3 Mini（`QBH4312GL`、型番 `MJWSD06MMC`）を、Home AssistantでローカルのBluetoothセンサーとして使う手順です。純正ファームウェアでは、機器ごとのキーを使って **Xiaomi BLE** で連携します。pvvxのファームウェアに書き換えると、**BTHome v2** 形式で測定値を配信できます。 [Xiaomi公式仕様](https://www.mi.com/jp/product/xiaomi-smart-temperature-and-humidity-monitor-3-mini/specs/)
+Home Assistantの設定、機器連携、運用のナレッジをまとめるリポジトリーです。
 
-## 実機で確認した内容
+[公開サイト](https://nuitsjp.github.io/my-home-assistant/)
 
-| 確認項目 | 結果 |
-| --- | --- |
-| Ubuntuで読み取ったBluetooth機器情報 | 型番 `MJWSD06MMC`、ハードウェア `V1.3`、ファームウェアとソフトウェアのリビジョン表示はいずれも `0009` |
-| 純正のBluetoothアドバタイズ | Xiaomi MiBeacon製品IDは `0x5BEA`。機器の存在を知らせるパケットと、暗号化された測定値を含むパケットの両方を受信。 |
-| 純正ファームウェアでのHome Assistant連携 | Xiaomi BLEが機器を検出。キー入力後に温度・湿度・バッテリーの項目が作成された。最後の確認では「切断」表示で、測定値の受信は未確認。 |
-| BTHome化 | この実機での書き込みとBTHome受信は未検証。以下はファームウェア開発元の資料に基づく手順。 |
+- [Xiaomi MJWSD06MMCをBTHome化する手順](docs/guides/mjwsd06mmc-bthome/index.md)
+- [Xiaomi MJWSD06MMCの英語版概要](docs/guides/mjwsd06mmc-bthome/overview.en.md)
 
-`0009` は開発元の `2.1.1_0009` 向けOTA手順が対象とするリビジョンです。Xiaomi Home上の完全なバージョン表記は未確認です。`0x5BEA` は電波で通知される製品IDで、基板のリビジョンを判定するには実機の情報が必要です。 [開発元のOTA手順と動作報告](https://github.com/pvvx/ATC_MiThermometer/issues/636)
+## サイトを編集する
 
-## 1. 純正ファームウェアのBluetooth認証情報を取得する
+Node.js 22以降で依存関係をインストールし、開発サーバーを起動します。
 
-1. スマートフォンの **Xiaomi Home** に温湿度計を追加します。開発元が案内する純正 `0009` からの無線書き換えには、この登録が必要です。登録済みならそのまま使います。
-2. Windowsで [Xiaomi Cloud Tokens Extractorのリリース](https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor/releases/tag/v1.5.1) から `token_extractor.exe` を取得して実行します。`p/q:` で `q` を入力し、表示されたQRコードを読み取って同じXiaomiアカウントでログインを承認します。Xiaomi Homeで使っている地域を選ぶか、サーバー選択画面でEnterを押して全地域を検索します。
-3. 実機のBluetoothアドレスと照合し、該当する機器の `TOKEN` と `BLE KEY` を控えます。出力は手元で管理してください。初期化や再登録で認証情報が変わる場合があります。
+```sh
+npm ci
+npm run docs:dev
+```
 
-### 純正ファームウェアのまま使う場合
-
-Home Assistantの **設定 → デバイスとサービス** で検出された **Xiaomi BLE** 機器を開き、セットアップや再認証で **暗号化キーを手動で入力** が表示されたら、32文字の `BLE KEY` を入力します。Home Assistantはキーを保持するので、再起動後もローカルで使えます。機器の検出だけができる場合は、温湿度計をHome AssistantのBluetooth受信機に近づけて、測定値を含むパケットを待ちます。「切断」のままなら、対象機器のキーと電波の受信をそれぞれ確認します。 [Home AssistantのXiaomi BLE暗号化ガイド](https://www.home-assistant.io/integrations/xiaomi_ble/#encryption)
-
-## 2. pvvxのBluetoothファームウェアを書き込む
-
-**書き込み前に互換性を確認してください。** 開発元にはBTHome化の成功例に加え、`V1.3` / `0009` でのGATTエラーや書き込み後に機器が応答しなくなった例も報告されています。基板の種類と復旧方法を確認してください。復旧にケースの分解や基板への配線が必要になる場合があります。対応するファームウェアと復旧方法を確認できてから進めます。 [OTAの動作報告](https://github.com/pvvx/ATC_MiThermometer/issues/636)、[基板の資料](https://pvvx.github.io/MJWSD06MMC/)、[書き込み失敗の報告](https://github.com/pvvx/ATC_MiThermometer/discussions/814)
-
-1. 温湿度計をBluetooth対応PCの近くに置き、スマートフォンのXiaomi Homeで機器の詳細画面を閉じます。WindowsのChromeまたはEdgeで [pvvx Telink BLE OTA Flasher](https://pvvx.github.io/ATC_MiThermometer/TelinkMiFlasher.html) を開きます。**BLE device name prefix filter(s)** を `MJWSD06MMC` に設定し、**Connect** から温湿度計を選びます。見つかりにくい場合は本体ボタンを短く押します。約7秒間長押しすると初期化されます。 [Xiaomi公式FAQ](https://www.mi.com/global/support/faq/details/KA-573296/)
-2. 接続ログで型番とハードウェア・ファームウェア・ソフトウェアのリビジョンを確認します。純正 `0009` 向けの手順では、**Mi Token** に `TOKEN`（16進数24文字）、**Mi Bind Key** に `BLE KEY`（16進数32文字）を入力します。**Login** を押し、`Login successful` を待ちます。対象機器やリビジョンが想定と異なる場合、または接続やログインに失敗する場合は、書き込み前に中断します。
-3. **Select Firmware** で対応するpvvxのBluetooth用イメージ `MJ6_vNN.bin` を選択します。**Start Flashing** を押し、書き込みが完了して温湿度計が再起動するまで、電源を入れたまま電波の届く範囲で待ちます。 [pvvxプロジェクトとファームウェア](https://github.com/pvvx/ATC_MiThermometer)、[ファームウェア一覧](https://github.com/pvvx/ATC_MiThermometer/blob/master/firmware.json)
-
-## 3. BTHomeを有効にしてHome Assistantに追加する
-
-1. Flasherで `MJ6_…` と表示される温湿度計に接続し直します。必要に応じて名前フィルターに `MJ6` を追加します。
-2. **Advertising type** で **BTHome v2** を選びます。キー入力なしで使う場合は **Encrypted beacon** のチェックを外します。暗号化しない場合、電波の届く範囲で第三者も測定値を受信できます。**Send Config** を押し、続けて **Disconnect** を押します。 [BTHome v2の仕様](https://bthome.io/format/)
-3. Home Assistantの **設定 → デバイスとサービス** で、検出された **BTHome** 機器を追加します。**統合を追加 → BTHome** からも追加できます。温湿度計の電波はHome AssistantのBluetoothアダプターか対応するBluetoothプロキシで受信します。この手順でXiaomiアカウントを使うのは、純正の認証情報を取得するときだけです。 [Home AssistantのBTHome設定ガイド](https://www.home-assistant.io/integrations/bthome/)
-4. 追加した機器を開き、温度・湿度と、配信されていればバッテリー残量を確認します。温度・湿度を本体の液晶表示と照合し、測定値が変化したときや設置場所でも更新されることを確認します。検出されない場合は、まずFlasherとの接続が切れているか、受信範囲内か、配信形式の設定が保存されたかを確認します。
+新しい記事のMarkdownと画像を `docs/guides/` の下に置き、`docs/index.md` からリンクします。`npm run docs:build` で `dist/` に静的ファイルを生成し、`npm run docs:preview` で生成結果を確認できます。`main` の変更はGitHub ActionsでGitHub Pagesに公開されます。
