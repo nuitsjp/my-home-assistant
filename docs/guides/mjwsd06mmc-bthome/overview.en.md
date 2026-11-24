@@ -1,10 +1,12 @@
-# Xiaomi MJWSD06MMC to BTHome
+# Convert a Bluetooth temperature and humidity sensor to BTHome
 
 **English** · [日本語](./overview.ja.md)
 
 [Detailed walkthrough with screenshots (Japanese)](./index.md)
 
-Flash pvvx firmware on the Xiaomi Smart Temperature and Humidity Monitor 3 Mini (`QBH4312GL`, model `MJWSD06MMC`) to send temperature and humidity readings to Home Assistant over **BTHome v2**. [Xiaomi specifications](https://www.mi.com/jp/product/xiaomi-smart-temperature-and-humidity-monitor-3-mini/specs/)
+We chose the Xiaomi Smart Temperature and Humidity Monitor 3 Mini (model `MJWSD06MMC`, product number `QBH4312GL`). At the time, it was the least expensive option we compared that was easy to buy in Japan and carried Japan's technical conformity mark (技適). [Xiaomi specifications](https://www.mi.com/jp/product/xiaomi-smart-temperature-and-humidity-monitor-3-mini/specs/) · [Xiaomi user guide with the conformity mark](https://www.mi.com/jp/support/user-guide-pdf/xiaomi-%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E6%B8%A9%E6%B9%BF%E5%BA%A6%E8%A8%88-3-mini/)
+
+The stock firmware required frequent use of Xiaomi Home in this setup. To check readings in one place, we flashed pvvx firmware and switched to **BTHome v2**, an open specification for Bluetooth sensor broadcasts that Home Assistant supports. [BTHome specification](https://bthome.io/) · [Home Assistant BTHome integration](https://www.home-assistant.io/integrations/bthome/)
 
 ## What we verified
 

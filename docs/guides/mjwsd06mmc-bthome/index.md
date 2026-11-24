@@ -1,8 +1,18 @@
-# Xiaomi MJWSD06MMCをHome Assistantで使う手順書
+# Bluetooth温湿度計をBTHome化する
 
 [手順の概要](./overview.ja.md) · [English guide](./overview.en.md)
 
-Xiaomi スマート温湿度計 3 Mini（製品番号 `QBH4312GL`、型番 `MJWSD06MMC`）にpvvxファームウェアを書き込み、BTHome v2でHome Assistantに追加します。BTHome化した機器を純正へ戻す方法は手順5にあります。 [Xiaomi公式仕様](https://www.mi.com/jp/product/xiaomi-smart-temperature-and-humidity-monitor-3-mini/specs/)
+Bluetooth温湿度計にpvvxファームウェアを書き込み、温度と湿度をBTHome v2でHome Assistantに取り込む手順です。純正ファームウェアへ書き戻す方法は手順5にあります。
+
+## この温湿度計を選んだ理由
+
+使ったのは **Xiaomi スマート温湿度計 3 Mini**（型番 `MJWSD06MMC`、製品番号 `QBH4312GL`）です。選定時に、日本国内で入手しやすく、技適マークを確認できる候補を比較したところ、この製品が最も安価でした。 [Xiaomi公式仕様](https://www.mi.com/jp/product/xiaomi-smart-temperature-and-humidity-monitor-3-mini/specs/)・[技適表示が掲載された取扱説明書](https://www.mi.com/jp/support/user-guide-pdf/xiaomi-%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E6%B8%A9%E6%B9%BF%E5%BA%A6%E8%A8%88-3-mini/)
+
+## BTHome化した理由
+
+純正ファームウェアでは、この環境でXiaomi Homeを頻繁に操作する必要がありました。普段の測定値の確認をHome Assistantにまとめるため、Bluetoothでセンサーの測定値を送る公開仕様の **BTHome** に切り替えました。書き換え後は、温湿度計の測定値をHome AssistantのBTHome統合で直接受信します。 [BTHomeの仕様](https://bthome.io/)・[Home AssistantのBTHome統合](https://www.home-assistant.io/integrations/bthome/)
+
+## 実機で確認したこと
 
 2026年11月25日、実機の `MJWSD06MMC`（ハードウェア `V1.3`、純正ファームウェアとソフトウェアのリビジョンはいずれも `0009`）に、pvvxの `MJ6_v59.bin` をBluetoothで書き込みました。Home AssistantにBTHome機器として追加し、温度と湿度が更新されることを確認しました。今回の作業では、この個体の純正ファームウェアのバックアップを省略しました。純正への書き戻しは未検証です。 [実機の確認記録](./overview.ja.md)
 

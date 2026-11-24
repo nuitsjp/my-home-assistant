@@ -6,8 +6,8 @@ A knowledge base for configuring, integrating, and operating Home Assistant.
 
 [Published site](https://nuitsjp.github.io/my-home-assistant/)
 
-- [Xiaomi MJWSD06MMC BTHome conversion guide](docs/guides/mjwsd06mmc-bthome/index.md) (Japanese)
-- [Xiaomi MJWSD06MMC quick guide](docs/guides/mjwsd06mmc-bthome/overview.en.md) (English)
+- [Bluetooth temperature and humidity sensor — BTHome conversion guide](docs/guides/mjwsd06mmc-bthome/index.md) (Japanese)
+- [Bluetooth temperature and humidity sensor — quick guide](docs/guides/mjwsd06mmc-bthome/overview.en.md) (English)
 
 ## Work on the site
 

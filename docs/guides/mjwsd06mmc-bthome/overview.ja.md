@@ -1,10 +1,12 @@
-# Xiaomi MJWSD06MMCのBTHome化
+# Bluetooth温湿度計のBTHome化
 
 [English](./overview.en.md) · **日本語**
 
 [スクリーンショット付きの詳細手順書](./index.md)
 
-Xiaomi スマート温湿度計 3 Mini（`QBH4312GL`、型番 `MJWSD06MMC`）にpvvxのファームウェアを書き込み、**BTHome v2** でHome Assistantに測定値を届ける手順です。 [Xiaomi公式仕様](https://www.mi.com/jp/product/xiaomi-smart-temperature-and-humidity-monitor-3-mini/specs/)
+使ったのは **Xiaomi スマート温湿度計 3 Mini**（型番 `MJWSD06MMC`、製品番号 `QBH4312GL`）です。選定時に、国内で入手しやすく、技適マークを確認できる候補の中で最も安価でした。 [Xiaomi公式仕様](https://www.mi.com/jp/product/xiaomi-smart-temperature-and-humidity-monitor-3-mini/specs/)・[技適表示が掲載された取扱説明書](https://www.mi.com/jp/support/user-guide-pdf/xiaomi-%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E6%B8%A9%E6%B9%BF%E5%BA%A6%E8%A8%88-3-mini/)
+
+この環境では純正ファームウェアで使うとXiaomi Homeを頻繁に操作する必要がありました。測定値の確認をHome Assistantにまとめるため、pvvxのファームウェアを書き込み、測定値の配信を公開仕様の **BTHome v2** に切り替えました。 [BTHomeの仕様](https://bthome.io/)・[Home AssistantのBTHome統合](https://www.home-assistant.io/integrations/bthome/)
 
 ## 実機で確認した内容
 
